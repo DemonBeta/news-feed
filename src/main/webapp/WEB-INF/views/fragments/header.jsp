@@ -16,8 +16,8 @@
 			</a>
 
 				<ul class="dropdown-menu" role="menu">
-					<li><a href="<spring:url value="/project/add"/>">Add</a></li>
-					<li><a href="<spring:url value="/project/find"/>">Find</a></li>
+					<li><a href="<spring:url value="/manage_news/add"/>">Add</a></li>
+					<li><a href="<spring:url value="/manage_news/find"/>">Find</a></li>
 				</ul></li>
 
 		</ul>

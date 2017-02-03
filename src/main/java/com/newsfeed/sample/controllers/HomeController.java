@@ -1,22 +1,21 @@
 package com.newsfeed.sample.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.newsfeed.sample.data.services.NewsService;
+
 @Controller
 public class HomeController {
+	
+	@Autowired
+	private NewsService newsService;
 
 	@RequestMapping("/")
-	public String goHome(Model model){
-		
-//		Project project = new Project();
-//		project.setName("First Project");
-//		project.setSponsor(new Sponsor("NASA", "555-55-55", "nasa@nasa.com"));
-//		project.setDescription("This is a simple project sponsored by NASA");
-//		
-//		model.addAttribute("currentProject", project);
-		
+	public String goHome(Model model){		
+		model.addAttribute("news", newsService.findAll());		
 		return "home";
 	}
 }
