@@ -2,17 +2,46 @@ package com.newsfeed.sample.data.entities;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.validator.constraints.NotBlank;
+
+@Entity
 public class NewsEntry {
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long newsId;
 
+	@NotBlank(message = "You must provide a description")
 	private String header;
-	
-	private String type;
-	
+
+	private String tag;
+
+	@Lob
+	@NotBlank(message = "You must provide a description")
 	private String content;
-	
+
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date postDate;
+
+	@PrePersist
+	void createdAt() {
+		this.postDate = new Date();
+	}
+
+	@PreUpdate
+	void updatedAt() {
+		this.postDate = new Date();
+	}
 
 	public Long getNewsId() {
 		return newsId;
@@ -31,11 +60,11 @@ public class NewsEntry {
 	}
 
 	public String getType() {
-		return type;
+		return tag;
 	}
 
 	public void setType(String type) {
-		this.type = type;
+		this.tag = type;
 	}
 
 	public String getContent() {
@@ -56,7 +85,7 @@ public class NewsEntry {
 
 	@Override
 	public String toString() {
-		return "NewsEntry [newsId=" + newsId + ", header=" + header + ", type=" + type + ", content=" + content
+		return "NewsEntry [newsId=" + newsId + ", header=" + header + ", type=" + tag + ", content=" + content
 				+ ", postDate=" + postDate + "]";
 	}
 }

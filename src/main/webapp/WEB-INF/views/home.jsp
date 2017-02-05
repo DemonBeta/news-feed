@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@	taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,24 +20,32 @@
 <body>
 
 	<jsp:include page="../views/fragments/header.jsp"></jsp:include>
+	<spring:url value="/news/edit" var="formUrl" />
 
 	<div class="container">
-		<h2>Latest News</h2>
-
-		<ul>
-			<c:forEach items="${news}" var="newsEntry">
-				<li class="list-group-item">
-						<label>${newsEntry.header}</label> <small>${newsEntry.postDate}</small>									
-						<button type="submit" class="btn btn-default pull-right" >Delete</button>
-						<button type="submit" class="btn btn-default pull-right" >Edit</button>
-					<p>
-						<span>Tag: ${newsEntry.type}</span>
-					</p>
-					<p>
-						<span>${newsEntry.content}</span>
-					</p></li>
-			</c:forEach>
-		</ul>
+		<div class="row">
+			<ul>
+				<h1>Latest News</h1>
+				<c:forEach items="${news}" var="newsEntry">
+					<form:form action="${formUrl}" method="post"
+						modelAttribute="newsEntry">
+						<li class="list-group-item"><label>${newsEntry.header}</label>
+							<small>${newsEntry.postDate}</small>
+							<button type="submit" class="btn btn-default pull-right"
+								name="delete" value="${newsEntry.newsId}">Delete</button>
+							<button type="submit" class="btn btn-default pull-right"
+								name="edit" value="${newsEntry.newsId}">Edit</button>
+							<p>
+								<span>Tag: ${newsEntry.type}</span>
+							</p>
+							<p>
+								<span>${newsEntry.content}</span>
+							</p>
+							<h1>ID:${newsEntry.newsId}</h1></li>
+					</form:form>
+				</c:forEach>
+			</ul>
+		</div>
 	</div>
 
 </body>
