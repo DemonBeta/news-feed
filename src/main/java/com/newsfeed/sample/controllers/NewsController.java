@@ -1,7 +1,6 @@
 package com.newsfeed.sample.controllers;
 
 import java.util.Arrays;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
@@ -29,12 +27,6 @@ public class NewsController {
 	
 	@Autowired
 	private NewsService newsService;
-
-//	@RequestMapping(value="/find")
-//	public String find(Model model){
-//		model.addAttribute("projects", newsService.findAll());
-//		return "projects";
-//	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public String addNews(SessionStatus status){

@@ -47,7 +47,7 @@
 
 				<div class="form-group">
 					<label for="news-tag">Tag</label>
-					<form:select path="type" cssClass="selectpicker" id="news-tag"
+					<form:select path="tag" cssClass="selectpicker" id="news-tag"
 						items="${tagOptions}" />
 				</div>
 

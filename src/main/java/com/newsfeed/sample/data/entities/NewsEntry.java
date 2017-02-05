@@ -1,5 +1,6 @@
 package com.newsfeed.sample.data.entities;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -8,14 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-public class NewsEntry {
+public class NewsEntry implements Comparable<NewsEntry>{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,11 +38,6 @@ public class NewsEntry {
 		this.postDate = new Date();
 	}
 
-	@PreUpdate
-	void updatedAt() {
-		this.postDate = new Date();
-	}
-
 	public Long getNewsId() {
 		return newsId;
 	}
@@ -59,12 +54,12 @@ public class NewsEntry {
 		this.header = header;
 	}
 
-	public String getType() {
+	public String getTag() {
 		return tag;
 	}
 
-	public void setType(String type) {
-		this.tag = type;
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 
 	public String getContent() {
@@ -75,8 +70,9 @@ public class NewsEntry {
 		this.content = content;
 	}
 
-	public Date getPostDate() {
-		return postDate;
+	public String getPostDate() {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return format.format(postDate);
 	}
 
 	public void setPostDate(Date postDate) {
@@ -85,7 +81,12 @@ public class NewsEntry {
 
 	@Override
 	public String toString() {
-		return "NewsEntry [newsId=" + newsId + ", header=" + header + ", type=" + tag + ", content=" + content
+		return "NewsEntry [newsId=" + newsId + ", header=" + header + ", tag=" + tag + ", content=" + content
 				+ ", postDate=" + postDate + "]";
+	}
+
+	@Override
+	public int compareTo(NewsEntry entry) {
+		return getPostDate().compareTo(entry.getPostDate());
 	}
 }

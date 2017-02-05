@@ -5,15 +5,10 @@ import java.util.Properties;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -23,17 +18,10 @@ import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
-// @EnableWebMvc
-// @ComponentScan(basePackages = "com.newsfeed.sample")
-// @PropertySource("classpath:prod.properties")
 @EnableTransactionManagement
 public class AppConfig {
-
-	// @Autowired
-	// private Environment env;
 
 	@Bean(name = "dataSource", destroyMethod = "shutdown")
 	public DataSource dataSource() {
@@ -54,7 +42,6 @@ public class AppConfig {
 		adapter.setShowSql(true);
 		adapter.setGenerateDdl(true);
 		adapter.setDatabase(Database.H2);
-		// adapter.setDatabasePlatform("org.hibernate.dialect.H2dialect");
 		return adapter;
 	}
 
@@ -78,11 +65,6 @@ public class AppConfig {
 	public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
 		return new JpaTransactionManager(emf);
 	}
-
-	// @Bean(name = "transactionManager")
-	// public PlatformTransactionManager transactionManagerForTest() {
-	// return new DataSourceTransactionManager(dataSourceForTest());
-	// }
 
 	@Bean
 	public BeanPostProcessor persistenceTranslation() {

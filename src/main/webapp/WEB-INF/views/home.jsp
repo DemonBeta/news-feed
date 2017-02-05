@@ -11,10 +11,18 @@
 
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="<spring:url value="/resources/css/bootstrap-select.min.css"/>"
+	type="text/css" />
+<link rel="stylesheet"
+	href="<spring:url value="/resources/css/global.css"/>" type="text/css" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script
+	src="<spring:url value="/resources/js/bootstrap-select.min.js"/>"></script>
+<script src="<spring:url value="/resources/js/resource.js"/>"></script>
 
 </head>
 <body>
@@ -30,18 +38,17 @@
 					<form:form action="${formUrl}" method="post"
 						modelAttribute="newsEntry">
 						<li class="list-group-item"><label>${newsEntry.header}</label>
-							<small>${newsEntry.postDate}</small>
+							<small>Post date: ${newsEntry.postDate}</small>
 							<button type="submit" class="btn btn-default pull-right"
 								name="delete" value="${newsEntry.newsId}">Delete</button>
 							<button type="submit" class="btn btn-default pull-right"
 								name="edit" value="${newsEntry.newsId}">Edit</button>
 							<p>
-								<span>Tag: ${newsEntry.type}</span>
+								<span>Tag: ${newsEntry.tag}</span>
 							</p>
 							<p>
 								<span>${newsEntry.content}</span>
 							</p>
-							<h1>ID:${newsEntry.newsId}</h1></li>
 					</form:form>
 				</c:forEach>
 			</ul>

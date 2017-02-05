@@ -3,6 +3,7 @@ package com.newsfeed.sample.repositories;
 import java.util.List;
 
 import com.newsfeed.sample.data.entities.NewsEntry;
+import com.newsfeed.sample.data.entities.SearchRequest;
 
 public interface NewsRepository {
 
@@ -14,5 +15,7 @@ public interface NewsRepository {
 
     int deleteNewsEntry(Long id);
 
-    void updateNewsEntry(NewsEntry newsEntry);	
+    void updateNewsEntry(NewsEntry newsEntry);
+    
+    List<NewsEntry> searchNewsEntry(SearchRequest searchRequest);
 }
