@@ -9,16 +9,8 @@
 
 		<ul class="nav navbar-nav">
 			<li><a href="<spring:url value="/"/>">All News</a></li>
+			<li><a href="<spring:url value="/news/add"/>">Manage News</a></li>
 
-			<li class="dropdown"><a href="#" class="dropdown-toggle"
-				data-toggle="dropdown" role="button" aria-expanded="false">Manage
-					News <span class="caret"></span>
-			</a>
-
-				<ul class="dropdown-menu" role="menu">
-					<li><a href="<spring:url value="/news/add"/>">Add</a></li>
-					<li><a href="<spring:url value="/news/find"/>">Find</a></li>
-				</ul></li>
 		</ul>
 
 		<spring:url value="/search" var="searchUrl" />
