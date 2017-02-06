@@ -9,8 +9,8 @@
 
 		<ul class="nav navbar-nav">
 			<li><a href="<spring:url value="/"/>">All News</a></li>
+			
 			<li><a href="<spring:url value="/news/add"/>">Manage News</a></li>
-
 		</ul>
 
 		<spring:url value="/search" var="searchUrl" />
